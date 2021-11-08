@@ -32,7 +32,7 @@ class BDMapper implements IBDMapper {
         return $this->data;
     }
 
-    function findById(int $id): Personne {
+    function findById(int $id) {
         foreach ($this->data as $datum) {
             if ($datum->getId() === $id)
                 return $datum;

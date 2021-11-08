@@ -15,8 +15,10 @@ $router->get('/', function () {
 /** Utilisation d'une classe contrôleur */
 
 $router->get( '/about', [TpWeb\Controleurs\Welcome::class, 'about']);
-
 $router->get( '/test', [TpWeb\Controleurs\Welcome::class, 'index']);
+$router->get( '/personnes', [TpWeb\Controleurs\PersonnesControleur::class, 'index']);
+$router->get( '/personnes/{id}', [TpWeb\Controleurs\PersonnesControleur::class, 'show']);
+
 
 try {
     $router->dispatch();
@@ -25,5 +27,6 @@ try {
     $router->getPublisher()->publish(new HtmlResponse('Not found.', 404));
 } catch (Throwable $e) {
     // Ca bug ...
+    print_r($e);
     $router->getPublisher()->publish(new HtmlResponse('Internal error.', 500));
 }

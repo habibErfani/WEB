@@ -2,10 +2,10 @@
     <a href="/">Mon Application</a>
     <ul>
         <li>
-            <a href="#">A Propos</a>
+            <a href="/about">A Propos</a>
         </li>
         <li>
-            <a href="#">Les contacts</a>
+            <a href="/personnes">Les contacts</a>
         </li>
     </ul>
 </nav>
