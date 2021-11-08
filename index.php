@@ -17,7 +17,10 @@ $router->get('/', function () {
 $router->get( '/about', [TpWeb\Controleurs\Welcome::class, 'about']);
 $router->get( '/test', [TpWeb\Controleurs\Welcome::class, 'index']);
 $router->get( '/personnes', [TpWeb\Controleurs\PersonnesControleur::class, 'index']);
+$router->post('/personnes', [TpWeb\Controleurs\PersonnesControleur::class, 'store']);
 $router->get( '/personnes/{id}', [TpWeb\Controleurs\PersonnesControleur::class, 'show']);
+$router->get( '/personnes/create', [TpWeb\Controleurs\PersonnesControleur::class, 'create']);
+
 
 
 try {
