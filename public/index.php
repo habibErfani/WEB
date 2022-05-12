@@ -47,5 +47,6 @@ $router ->get('/items', [new ItemsController($container->get('db_connection')), 
 $router ->post('/items', [new ItemPostController($container->get('db_connection')), 'ajoutItems']);
 $router ->delete('/items', [new ItemsController($container->get('db_connection')), 'delete']);
 
+
 $response = $router->dispatch($request);
 (new SapiEmitter())->emit($response);
