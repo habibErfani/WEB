@@ -26,7 +26,6 @@ $container->setFactory('db_connection', function () {
         'host' => 'localhost',
         'driver' => 'pdo_mysql',
     );
-
     return DriverManager::getConnection($dbParams);
 });
 
@@ -42,10 +41,11 @@ $strategy = new JsonStrategy($responseFactory);
 $router =new Router();
 $router->setStrategy($strategy);
 $router->middleware(new JsonPayload());
+$router->middleware(new \App\Controllers\SecurityKeyMiddleware());
 $router ->get('/', [Home::class, 'home']);
 $router ->get('/items', [new ItemsController($container->get('db_connection')), 'items']);
 $router ->post('/items', [new ItemPostController($container->get('db_connection')), 'ajoutItems']);
-$router ->delete('/items', [new ItemsController($container->get('db_connection')), 'delete']);
+$router ->delete('/items/{Id}', [new ItemsController($container->get('db_connection')), 'delete']);
 
 $response = $router->dispatch($request);
 (new SapiEmitter())->emit($response);

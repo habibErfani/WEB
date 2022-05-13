@@ -15,18 +15,28 @@ class ItemsController
     /**
      * @throws \Doctrine\DBAL\Exception
      */
-    public function items(): mixed
+    /**
+     * @return list<array<string,mixed>>
+     */
+    public function items(): array
     {
         $rs = $this->connexion->prepare("select * from items");
         $result = $rs->executeQuery();
         return $result->fetchAllAssociative();
     }
-
-    public function delete(ServerRequestInterface $request): mixed
+    /**
+     * @return list<array<string,mixed>>
+     */
+    public function delete(ServerRequestInterface $request, array $args)//: array
     {
-        $body = $request->getParsedBody();
-        $id = $body;
-        $result = $this->connexion->prepare("delete from items where Id=$id");
+/*
+        $securityId = $request->getHeaderLine('SecurityKey');
+        if ($securityId!= 51){
+            throw new  \Exception('mauvais clé');
+        }
+*/
+        $id = $args['Id'];
+        $result = $this->connexion->prepare("delete from items where Id = $id");
         $result->executeQuery();
         return $this->items();
     }
