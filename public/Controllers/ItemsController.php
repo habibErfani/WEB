@@ -33,6 +33,7 @@ class ItemsController
         $securityId = $request->getHeaderLine('SecurityKey');
         if ($securityId!= 51){
             throw new  \Exception('mauvais clé');
+            
         }
 */
         $id = $args['Id'];
