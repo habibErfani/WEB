@@ -17,6 +17,7 @@ use App\Controllers\Home;
 use Laminas\ServiceManager\ServiceManager;
 use Middlewares\JsonPayload;
 
+
 $container = new ServiceManager();
 $container->setFactory('db_connection', function () {
     $dbParams = array(
