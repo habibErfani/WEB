@@ -23,3 +23,4 @@ class SecurityKeyMiddleware implements MiddlewareInterface
         return $handler->handle($request);
     }
 }
+
