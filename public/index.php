@@ -29,6 +29,7 @@ $container->setFactory('db_connection', function () {
     return DriverManager::getConnection($dbParams);
 });
 
+
 $request = ServerRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,
