@@ -27,7 +27,7 @@ $container->setFactory('db_connection', function () {
         'driver' => 'pdo_mysql',
     );
     return DriverManager::getConnection($dbParams);
-});
+}); 
 
 $request = ServerRequestFactory::fromGlobals(
     $_SERVER,
