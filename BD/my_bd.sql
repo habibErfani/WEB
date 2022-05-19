@@ -14,4 +14,5 @@ insert into  items (Id, Desctription) VALUES
                                           (5,'Ceci est le numero cinq'),
                                           (6,'Ceci est le numero six'),
                                           (7,'Ceci est le numero sept'),
-                                          (8,'Ceci est le numero huit');                           
+                                          (8,'Ceci est le numero huit');         
+                                          
