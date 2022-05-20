@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Laminas\Diactoros\Response\HtmlResponse;
 
 class Home
-{
+{ 
     public function home(): HtmlResponse
     {
         return new HtmlResponse('
