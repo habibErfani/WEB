@@ -18,6 +18,7 @@ class ItemsController
     /**
      * @return list<array<string,mixed>>
      */
+    
     public function items(): array
     {
         $rs = $this->connexion->prepare("select * from items");
