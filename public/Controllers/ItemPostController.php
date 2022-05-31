@@ -7,7 +7,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class ItemPostController
 {
-    
     private Connection $connexion;
     public function __construct(Connection $connexion)
     {
