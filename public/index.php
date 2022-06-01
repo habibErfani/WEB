@@ -18,13 +18,15 @@ use Laminas\ServiceManager\ServiceManager;
 use Middlewares\JsonPayload;
 
 $container = new ServiceManager();
-$container->setFactory('db_connection', function () {
-    $dbParams = array(
-        'user' => 'root',
-        'password' => '123',
-        'dbname' => 'exo',
-        'host' => 'localhost',
-        'driver' => 'pdo_mysql',
+$container->setFactory(
+    'db_connection',
+    function () {
+        $dbParams = array(
+            'user' => 'root',
+            'password' => '123',
+            'dbname' => 'exo',
+            'host' => 'localhost',
+            'driver' => 'pdo_mysql',
     );
     return DriverManager::getConnection($dbParams);
 }); 
@@ -37,15 +39,64 @@ $request = ServerRequestFactory::fromGlobals(
     $_FILES
 );
 $responseFactory = new ResponseFactory();
-$strategy = new JsonStrategy($responseFactory);
-$router =new Router();
-$router->setStrategy($strategy);
-$router->middleware(new JsonPayload());
-$router->middleware(new \App\Controllers\SecurityKeyMiddleware());
-$router ->get('/', [Home::class, 'home']);
-$router ->get('/items', [new ItemsController($container->get('db_connection')), 'items']);
-$router ->post('/items', [new ItemPostController($container->get('db_connection')), 'ajoutItems']);
-$router ->delete('/items/{Id}', [new ItemsController($container->get('db_connection')), 'delete']);
 
-$response = $router->dispatch($request);
-(new SapiEmitter())->emit($response);
+$strategy = new JsonStrategy(
+    $responseFactory
+);
+
+$router =new Router();
+
+$router->setStrategy($strategy);
+$router->middleware(
+    new JsonPayload()
+);
+$router->middleware(
+    new \App\Controllers\SecurityKeyMiddleware()
+);
+$router ->get(
+    '/',
+    [
+        Home::class,
+        'home'
+    ]
+);
+$router ->get(
+    '/items',
+    [
+        new ItemsController(
+            $container->get(
+                'db_connection'
+            )
+        ),
+        'items'
+    ]
+);
+$router ->post(
+    '/items',
+    [
+        new ItemPostController(
+            $container->get(
+                'db_connection'
+            )
+        ),
+        'ajoutItems'
+    ]
+);
+$router ->delete(
+    '/items/{Id}',
+    [
+        new ItemsController(
+            $container->get(
+                'db_connection'
+            )
+        ),
+        'delete'
+    ]
+);
+
+$response = $router->dispatch(
+    $request
+);
+(new SapiEmitter())->emit(
+    $response
+);
