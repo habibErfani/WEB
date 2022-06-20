@@ -12,7 +12,7 @@ RUN apt-get update -qq && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# PHP Extensions
+# PHP Extensions 
 RUN docker-php-ext-install pdo_mysql
 #COPY conf/php.ini /usr/local/etc/php/conf.d/app.ini
 
