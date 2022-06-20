@@ -15,7 +15,7 @@ RUN apt-get update -qq && \
 # PHP Extensions 
 RUN docker-php-ext-install pdo_mysql
 #COPY conf/php.ini /usr/local/etc/php/conf.d/app.ini
-
+ 
 # Apache
 COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
 # COPY conf/apache.conf /etc/apache2/conf-available/z-app.conf
