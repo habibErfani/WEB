@@ -22,6 +22,7 @@ COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
 # COPY /reel/public/htaccess /app/public/htaccess
 RUN a2enmod rewrite
 
+
 #Composer
 COPY composer.json composer.json
 COPY composer.lock composer.lock
