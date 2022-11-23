@@ -36,7 +36,7 @@ class ItemsController
             throw new  \Exception('mauvais clé');
             
         }
-*/
+*/ 
         $id = $args['Id'];
         $result = $this->connexion->prepare("delete from items where Id = $id");
         $result->executeQuery();
